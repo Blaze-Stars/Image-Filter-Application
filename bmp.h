@@ -8,7 +8,7 @@ typedef uint16_t    WORD;
 
 
 
-typedef class ImageDetails {
+class BITMAPFILEHEADER {
 
     public:
 
@@ -19,13 +19,12 @@ typedef class ImageDetails {
     DWORD   bfoffBits;
 
 } __attribute__((__packed__))
-BITMAPFILEHEADER;
 
 
 
 
 
-typedef class ImageDetails2
+class BITMAPINFOHEADER
 {
     public:
 
@@ -41,10 +40,10 @@ typedef class ImageDetails2
     DWORD  biClrUsed;
     DWORD  biClrImportant;
 } __attribute__((__packed__))
-BITMAPINFOHEADER;
 
 
-typedef class Color
+
+class RGBTRIPLE
 {
     public:
 
@@ -52,4 +51,3 @@ typedef class Color
     BYTE  rgbtGreen;
     BYTE  rgbtRed;
 } __attribute__((__packed__))
-RGBTRIPLE;
