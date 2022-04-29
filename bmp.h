@@ -18,7 +18,7 @@ class BITMAPFILEHEADER {
     WORD    bfReserved2;
     DWORD   bfoffBits;
 
-} __attribute__((__packed__))
+} __attribute__((__packed__));
 
 
 
@@ -39,7 +39,9 @@ class BITMAPINFOHEADER
     LONG   biYPelsPerMeter;
     DWORD  biClrUsed;
     DWORD  biClrImportant;
-} __attribute__((__packed__))
+} __attribute__((__packed__));
+
+
 
 
 
@@ -50,4 +52,4 @@ class RGBTRIPLE
     BYTE  rgbtBlue;
     BYTE  rgbtGreen;
     BYTE  rgbtRed;
-} __attribute__((__packed__))
+} __attribute__((__packed__));
