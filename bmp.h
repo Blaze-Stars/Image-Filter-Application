@@ -7,7 +7,7 @@ typedef uint16_t WORD;
 
 
 
-class BITMAPFILEHEADER{
+class BITMAPFILEHEADER {
     public:
         WORD bfType;
         DWORD bfSize;
@@ -17,8 +17,7 @@ class BITMAPFILEHEADER{
 } __attribute__((__packed__));
 
 
-
-class BITMAPINFOHEADER{
+class BITMAPINFOHEADER {
     public:
         DWORD biSize;
         LONG biWidth;
@@ -34,8 +33,7 @@ class BITMAPINFOHEADER{
 } __attribute__((__packed__));
 
 
-
-class RGBTRIPLE{
+class RGBTRIPLE {
     public:
         BYTE rgbtBlue;
         BYTE rgbtGreen;
