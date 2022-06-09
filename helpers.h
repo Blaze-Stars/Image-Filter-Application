@@ -1,16 +1,19 @@
-// To be Included the header file "bmp.h"
+#include "bmp.h"
+#include <vector>
+using namespace std;
 
-// Convert Image to grayscale
-// write protopype below this comment
+// Convert image to grayscale
+void grayscale(int, int, std::vector<std::vector<RGBTRIPLE>>);
 
 // Reflect image horizontally
-// write protopype below this comment
+void reflect(int, int, std::vector<std::vector<RGBTRIPLE>>);
 
 // Detect edges
-// write protopype below this comment
+void edges(int, int, std::vector<std::vector<RGBTRIPLE>>);
 
 // Blur image
-// write protopype below this comment
+void blur(int, int, std::vector<std::vector<RGBTRIPLE>>);
 
 // Sepia image
-// write protopype below this comment
+void sepia(int, int, std::vector<std::vector<RGBTRIPLE>>);
+
