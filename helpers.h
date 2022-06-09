@@ -1,16 +1,17 @@
 // To be Included the header file "bmp.h"
+#include "bmp.h"
 
 // Convert Image to grayscale
-// write protopype below this comment
+void grayscale(int height,int width,RGBTRIPLE **image);
 
 // Reflect image horizontally
-// write protopype below this comment
+void reflect(int height,int width,RGBTRIPLE **image);
 
 // Detect edges
-// write protopype below this comment
+void edges(int height,int width,RGBTRIPLE **image);
 
 // Blur image
-// write protopype below this comment
+void blur(int height,int width,RGBTRIPLE **image);
 
 // Sepia image
-// write protopype below this comment
+void sepia(int height,int width,RGBTRIPLE **image);
