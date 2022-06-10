@@ -17,7 +17,7 @@ int main(int argc, char **argv)
         const char *filtersOptions {"begrs"};
 
         // Get filter flag
-        char filter {static_cast<char>(getopt(argc, argv, filtersOptions))};
+        unsigned char filter {static_cast<unsigned char>(getopt(argc, argv, filtersOptions))};
 
         // check validity
         if (filter == '?') {
@@ -25,7 +25,8 @@ int main(int argc, char **argv)
         }
 
         // Ensure only one filter
-        if (filter != -1) {
+        if (getopt(argc, argv, filtersOptions) != -1) {
+            std::cout << filter << std::endl;
             throw std::string {"Only one filter allowed."};
         }
 
@@ -36,13 +37,13 @@ int main(int argc, char **argv)
 
         // Open input file and check
         FILE *inptr {fopen(argv[optind], "r")};
-        if (inptr == NULL) {
+        if (inptr == nullptr) {
             throw std::string {"Could not read : " + static_cast<std::string>(argv[optind])};
         }
 
         // open output file
         FILE *outptr {fopen(argv[optind + 1], "w")};
-        if (outptr == NULL) {
+        if (outptr == nullptr) {
             throw std::string {"Could not create : " + static_cast<std::string>(argv[optind + 1])};
         }
 
