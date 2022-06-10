@@ -17,8 +17,8 @@ int main(int argc, char **argv)
         const char *filtersOptions {"begrs"};
 
         // Get filter flag
-        char filter {getopt(argc, argv, filtersOptions)};
-        
+        char filter {static_cast<char>(getopt(argc, argv, filtersOptions))};
+
         // check validity
         if (filter == '?') {
             throw std::string {"Invalid filter."};
@@ -37,15 +37,13 @@ int main(int argc, char **argv)
         // Open input file and check
         FILE *inptr {fopen(argv[optind], "r")};
         if (inptr == NULL) {
-            std::string fileName(argv[optind]);
-            throw std::string {"Could not read : " + fileName};
+            throw std::string {"Could not read : " + static_cast<std::string>(argv[optind])};
         }
 
         // open output file
         FILE *outptr {fopen(argv[optind + 1], "w")};
-        if (inptr == NULL) {
-            std::string fileName(argv[optind + 1]);
-            throw std::string {"Could not write : " + fileName};
+        if (outptr == NULL) {
+            throw std::string {"Could not create : " + static_cast<std::string>(argv[optind + 1])};
         }
 
 
