@@ -17,7 +17,7 @@ int main(int argc, char **argv)
         const char *filtersOptions {"begrs"};
 
         // Get filter flag
-        unsigned char filter {static_cast<unsigned char>(getopt(argc, argv, filtersOptions))};
+        char filter {static_cast<char>(getopt(argc, argv, filtersOptions))};
 
         // check validity
         if (filter == '?') {
@@ -26,7 +26,6 @@ int main(int argc, char **argv)
 
         // Ensure only one filter
         if (getopt(argc, argv, filtersOptions) != -1) {
-            std::cout << filter << std::endl;
             throw std::string {"Only one filter allowed."};
         }
 
