@@ -64,10 +64,10 @@ int main(int argc, char **argv) {
         }
 
         int height {abs(bi.biHeight)};
-        int width {abs(bi.biWidth)};
+        int width  {abs(bi.biWidth)};
 
         // Allocate memory for image 2D array
-        RGBTRIPLE **image {new RGBTRIPLE *[height]};
+        RGBTRIPLE **image {new RGBTRIPLE*[height]};
         for (int i{0}; i < height; ++i) {
                image[i] = new RGBTRIPLE[width];
         }
@@ -93,8 +93,7 @@ int main(int argc, char **argv) {
         }
 
         // Filter image
-        switch (filter)
-        {
+        switch (filter) {
             // Blur
             case 'b':
                 // blur();
@@ -127,23 +126,21 @@ int main(int argc, char **argv) {
         fwrite(&bi, sizeof(BITMAPINFOHEADER), 1, outFile);
 
         // Write new pixels to outfile
-        for (int i {0}; i < height; ++i)
-        {
+        for (int i {0}; i < height; ++i) {
             // Write row to outfile
             fwrite(image + i, sizeof(RGBTRIPLE), width, outFile);
 
             // Write padding at end of row
-            for (size_t j {0}; j < padding; ++j)
-            {
+            for (size_t j {0}; j < padding; ++j) {
                 fputc(0x00, outFile);
             }
         }
 
         // Free memory for image
         for (int i {0}; i < height; ++i) {
-            delete[] image[i];
+            delete [] image[i];
         }
-        delete[] image;
+        delete [] image;
 
         // Close inFile
         fclose(inFile);
