@@ -1,5 +1,4 @@
 // BMP-related data types based on Microsoft's own
-
 #include <cstdint>
 
 /**
