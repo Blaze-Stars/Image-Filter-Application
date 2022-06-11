@@ -2,12 +2,8 @@
 #include <iostream>
 #include <string>
 #include <cstdlib>
-// #include <cstdio>
 // #include <stdexcept>
-
 #include "helpers.h"
-
-// using namespace std;
 
 // main file
 int main(int argc, char **argv) {
