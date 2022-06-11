@@ -1,4 +1,3 @@
-// To be Included the header file "bmp.h"
 #include "bmp.h"
 
 // Convert Image to grayscale
