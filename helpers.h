@@ -14,4 +14,4 @@
  void blur(int, int, RGBTRIPLE **);
 
 // Sepia image
- void sepia(int, int,RGBTRIPLE **);
+ void sepia(int, int, RGBTRIPLE **);
