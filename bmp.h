@@ -1,13 +1,13 @@
 
-#include <cstdint.h>
+#include <cstdint>
 
 typedef uint8_t BYTE;
 typedef uint32_t DWORD;
-typedef int32_t LONG;
 typedef uint16_t WORD;
+typedef int32_t LONG;
 
-typedef struct
-{
+
+typedef struct{
     WORD bfType;
     DWORD bfSize;
     WORD bfReserved1;
@@ -16,8 +16,7 @@ typedef struct
 } __attribute__((__packed__))
 BITMAPFILEHEADER;
 
-typedef struct
-{
+typedef struct{
     DWORD biSize;
     LONG biWidth;
     LONG biHeight;
@@ -32,8 +31,7 @@ typedef struct
 } __attribute__((__packed__))
 BITMAPINFOHEADER;
 
-typedef struct
-{
+typedef struct{
     BYTE rgbtBlue;
     BYTE rgbtGreen;
     BYTE rgbtRed;
