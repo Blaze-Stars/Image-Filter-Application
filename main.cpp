@@ -52,7 +52,7 @@ int main(int argc, char **argv) {
         fread(&bi, sizeof(BITMAPINFOHEADER), 1, inFile);
 
         // Ensure infile is (likely) a 24-bit uncompressed BMP 4.0
-        if (bf.bfType != 0x4d42 || bf.bfoffBits != 54 || bi.biSize != 40 || bi.biBitCount != 24 || bi.biCompression != 0) {
+        if (bf.bfType != 0x4d42 || bf.bfOffBits != 54 || bi.biSize != 40 || bi.biBitCount != 24 || bi.biCompression != 0) {
             fclose(outFile);
             fclose(inFile);
             
@@ -82,7 +82,7 @@ int main(int argc, char **argv) {
         // Iterate over infile's scanlines
         for (int i {0}; i < height; i++) {
             // Read row into pixel array
-            fread(image + i, sizeof(RGBTRIPLE), width, inFile);
+            fread(*(image + i), sizeof(RGBTRIPLE), width, inFile);
 
             // Skip over padding
             fseek(inFile, padding, SEEK_CUR);
@@ -93,25 +93,30 @@ int main(int argc, char **argv) {
             // Blur
             case 'b':
                 // blur();
+                blur(height, width, image);
                 break;
 
             // Edges
             case 'e':
                 // edges();
+                edges(height, width, image);
                 break;
 
             // Grayscale
             case 'g':
                 // grayscale();
+                grayscale(height, width, image);
                 break;
 
             // Reflect
             case 'r':
                 // reflect();
+                reflect(height, width, image);
                 break;
             // sepia
             case 's':
                 // sepia();
+                sepia(height, width, image);
                 break;
         }
 
@@ -124,7 +129,7 @@ int main(int argc, char **argv) {
         // Write new pixels to outfile
         for (int i {0}; i < height; ++i) {
             // Write row to outfile
-            fwrite(image + i, sizeof(RGBTRIPLE), width, outFile);
+            fwrite(*(image + i), sizeof(RGBTRIPLE), width, outFile);
 
             // Write padding at end of row
             for (size_t j {0}; j < padding; ++j) {
