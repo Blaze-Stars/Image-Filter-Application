@@ -2,16 +2,16 @@
 #include "bmp.h"
 
 // Convert Image to grayscale
-void grayscale(int height,int width,RGBTRIPLE **image);
+  void grayscale(int ,int ,RGBTRIPLE);
 
 // Reflect image horizontally
-void reflect(int height,int width,RGBTRIPLE **image);
+  void reflect(int ,int ,RGBTRIPLE);
 
 // Detect edges
-void edges(int height,int width,RGBTRIPLE **image);
+  void edges(int ,int ,RGBTRIPLE);
 
 // Blur image
-void blur(int height,int width,RGBTRIPLE **image);
+  void blur(int ,int ,RGBTRIPLE);
 
 // Sepia image
-void sepia(int height,int width,RGBTRIPLE **image);
+  void sepia(int ,int ,RGBTRIPLE);
