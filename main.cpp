@@ -7,7 +7,7 @@
 
 #include "helpers.h"
 
-using namespace std;
+// using namespace std;
 
 // main file
 int main(int argc, char **argv) {
@@ -20,31 +20,31 @@ int main(int argc, char **argv) {
 
         // check validity
         if (filter == '?') {
-            throw string {"Invalid filter."};
+            throw std::string {"Invalid filter."};
         }
 
         // Ensure only one filter
         if (getopt(argc, argv, filtersOptions) != -1) {
-            throw string {"Only one filter allowed."};
+            throw std::string {"Only one filter allowed."};
         }
 
         // Ensure proper usage
         if (argc != optind + 2) {
-            throw string {"Usage: filter [flag] infile outfile"};
+            throw std::string {"Usage: filter [flag] infile outfile"};
         }
 
         // Open input file 
         FILE *inFile {fopen(argv[optind], "r")};
         // check readability
         if (inFile == nullptr) {
-            throw string {"Could not read : " + static_cast<string>(argv[optind])};
+            throw std::string {"Could not read : " + static_cast<std::string>(argv[optind])};
         }
 
         // open output file
         FILE *outFile {fopen(argv[optind + 1], "w")};
         // check writability
         if (outFile == nullptr) {
-            throw string {"Could not create : " + static_cast<string>(argv[optind + 1])};
+            throw std::string {"Could not create : " + static_cast<std::string>(argv[optind + 1])};
         }
 
         // Read inFile's BITMAPFILEHEADER
@@ -60,21 +60,24 @@ int main(int argc, char **argv) {
             fclose(outFile);
             fclose(inFile);
             
-            throw string {"Unsupported file format."};
+            throw std::string {"Unsupported file format."};
         }
 
         int height {abs(bi.biHeight)};
         int width {abs(bi.biWidth)};
 
-        // Allocate memory for image
-        RGBTRIPLE *image {new RGBTRIPLE[height * width]};
-        
+        // Allocate memory for image 2D array
+        RGBTRIPLE **image {new RGBTRIPLE *[height]};
+        for (int i{0}; i < height; ++i) {
+               image[i] = new RGBTRIPLE[width];
+        }
+
         // checks for successful memory allocation
         if (image == nullptr) {
             fclose(inFile);
             fclose(outFile);
 
-            throw string {"Not enough memory to store image."};
+            throw std::string {"Not enough memory to store image."};
         }
 
         // Determine padding for scanlines
@@ -124,19 +127,22 @@ int main(int argc, char **argv) {
         fwrite(&bi, sizeof(BITMAPINFOHEADER), 1, outFile);
 
         // Write new pixels to outfile
-        for (int i {0}; i < height; i++)
+        for (int i {0}; i < height; ++i)
         {
             // Write row to outfile
             fwrite(image + i, sizeof(RGBTRIPLE), width, outFile);
 
             // Write padding at end of row
-            for (size_t j {0}; j < padding; j++)
+            for (size_t j {0}; j < padding; ++j)
             {
                 fputc(0x00, outFile);
             }
         }
 
         // Free memory for image
+        for (int i {0}; i < height; ++i) {
+            delete[] image[i];
+        }
         delete[] image;
 
         // Close inFile
@@ -146,8 +152,8 @@ int main(int argc, char **argv) {
         fclose(outFile);
 
     }
-    catch(string &ex) {
-        cerr << ex << endl;
+    catch(std::string &ex) {
+        std::cerr << ex << std::endl;
         return 1;
     }
     
