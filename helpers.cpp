@@ -1,15 +1,25 @@
+/*
+    Defination of the filters used in this Application.
+    Prototype can be found in `helpers.h`
+*/
 #include <cmath>
 #include <cstdlib>
 #include "helpers.h"
 
 // Defination for grayscale filter
-// Write code below this comment
+void grayscale(int height, int width, RGBTRIPLE **image) {
+    // code to be written
+}
 
 // Defination for Reflect filter (Horizontally)
-// Write code below this comment
+void reflect(int height, int width, RGBTRIPLE **image) {
+    // code to be written
+}
 
 // Defination for Blur Filter
-// Write code below this comment
+void blur(int height, int width, RGBTRIPLE **image) {
+    // code to be written
+}
 
 // stops max value at 255 preventing overflow
 int limitRGB(int RGB)
@@ -21,8 +31,13 @@ int limitRGB(int RGB)
 
     return RGB;
 }
-// Defination for Edges filter
-// Write code below this comment
 
-// Defination for Sepia
-// Write code below this comment
+// Defination for Edges filter
+void edges(int height, int width, RGBTRIPLE **image) {
+    // code to be written
+}
+
+// Defination for Sepia filter
+void sepia(int height, int width, RGBTRIPLE **image) {
+    // code to be written
+}
