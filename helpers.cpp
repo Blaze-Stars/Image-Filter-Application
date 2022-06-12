@@ -48,7 +48,14 @@ void edges(int height, int width, RGBTRIPLE **image) {
 
     for (int i {0}; i < width; i++) {
         for (int j {0}; j < height; j++) {
-
+            
+            // reinitialize to 0 again after each iteration
+            sumBlueX = 0.0;
+            sumGreenX = 0.0;
+            sumRedX = 0.0;
+            sumBlueY = 0.0;
+            sumGreenY = 0.0;
+            sumRedY = 0.0;
             // sums values of the pixel and 8 neighboring ones after applying a modifier, skips iteration if it goes outside the pic
             for (int k {-1}; k < 2; k++) {
                 if (j + k < 0 || j + k > height - 1) {
@@ -99,9 +106,9 @@ void sepia(int height, int width, RGBTRIPLE **image) {
         for (int j {0}; j < width; ++j) {
 
             // separately stored modified colured channel
-            int sepiaRed   {(.393 * image[i][j].rgbtRed) + (.769 * image[i][j].rgbtGreen) + (.189 * image[i][j].rgbtBlue)};
-            int sepiaGreen {(.349 * image[i][j].rgbtRed) + (.686 * image[i][j].rgbtGreen) + (.168 * image[i][j].rgbtBlue)};
-            int sepiaBlue  {(.272 * image[i][j].rgbtRed) + (.534 * image[i][j].rgbtGreen) + (.131 * image[i][j].rgbtBlue)};
+            int sepiaRed   = (.393 * image[i][j].rgbtRed) + (.769 * image[i][j].rgbtGreen) + (.189 * image[i][j].rgbtBlue);
+            int sepiaGreen = (.349 * image[i][j].rgbtRed) + (.686 * image[i][j].rgbtGreen) + (.168 * image[i][j].rgbtBlue);
+            int sepiaBlue  = (.272 * image[i][j].rgbtRed) + (.534 * image[i][j].rgbtGreen) + (.131 * image[i][j].rgbtBlue);
 
             // checking for boundary limit i.e 255 and storing correct values to image
             image[i][j].rgbtRed   = sepiaRed > 255 ? 255 : round(sepiaRed);
