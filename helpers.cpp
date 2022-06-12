@@ -100,17 +100,15 @@ void edges(const int &height, const int &width, RGBTRIPLE **image) {
 
 // Definition for Sepia filter
 void sepia(const int &height, const int &width, RGBTRIPLE **image) {
-    
     // Iterating over each pixel
     for (int i {0}; i < height; ++i) {
         for (int j {0}; j < width; ++j) {
+            // Separately stored modified colured channel
+            int sepiaRed   {static_cast<int>(.393 * image[i][j].rgbtRed + .769 * image[i][j].rgbtGreen + .189 * image[i][j].rgbtBlue)};
+            int sepiaGreen {static_cast<int>(.349 * image[i][j].rgbtRed + .686 * image[i][j].rgbtGreen + .168 * image[i][j].rgbtBlue)};
+            int sepiaBlue  {static_cast<int>(.272 * image[i][j].rgbtRed + .534 * image[i][j].rgbtGreen + .131 * image[i][j].rgbtBlue)};
 
-            // separately stored modified colured channel
-            int sepiaRed   = (.393 * image[i][j].rgbtRed) + (.769 * image[i][j].rgbtGreen) + (.189 * image[i][j].rgbtBlue);
-            int sepiaGreen = (.349 * image[i][j].rgbtRed) + (.686 * image[i][j].rgbtGreen) + (.168 * image[i][j].rgbtBlue);
-            int sepiaBlue  = (.272 * image[i][j].rgbtRed) + (.534 * image[i][j].rgbtGreen) + (.131 * image[i][j].rgbtBlue);
-
-            // checking for boundary limit i.e 255 and storing correct values to image
+            // Checking for boundary limit i.e 255 and storing correct values to image
             image[i][j].rgbtRed   = sepiaRed > 255 ? 255 : round(sepiaRed);
             image[i][j].rgbtGreen = sepiaGreen > 255 ? 255 : round(sepiaGreen);
             image[i][j].rgbtBlue  = sepiaBlue > 255 ? 255 : round(sepiaBlue);
