@@ -20,10 +20,10 @@ void reflect(int height, int width, RGBTRIPLE **image) {
 void blur(int height, int width, RGBTRIPLE **image) {
     // code to be written
     
-    int sumBlue;
-    int sumGreen;
-    int sumRed;
-    int count;
+    int sumBlue {0};
+    int sumGreen {0};
+    int sumRed {0};
+    int count {0};
     //create a temporary table of colors to not alter the calculations
     RGBTRIPLE tempImg[height][width];
 
