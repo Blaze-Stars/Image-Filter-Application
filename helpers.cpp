@@ -7,17 +7,17 @@
 #include "helpers.h"
 
 // Definition for grayscale filter
-void grayscale(int height, int width, RGBTRIPLE **image) {
+void grayscale(const int &height, const int &width, RGBTRIPLE **image) {
     // code to be written
 }
 
 // Definition for Reflect filter (Horizontally)
-void reflect(int height, int width, RGBTRIPLE **image) {
+void reflect(const int &height, const int &width, RGBTRIPLE **image) {
     // code to be written
 }
 
 // Definition for Blur Filter
-void blur(int height, int width, RGBTRIPLE **image) {
+void blur(const int &height, const int &width, RGBTRIPLE **image) {
     // code to be written
 }
 
@@ -31,7 +31,7 @@ int limitRGB(int RGB) {
 }
 
 // Definition for Edges filter
-void edges(int height, int width, RGBTRIPLE **image) {
+void edges(const int &height, const int &width, RGBTRIPLE **image) {
     
     // create temporary values to store the calculations
     float sumBlueX {0.0};
@@ -99,7 +99,7 @@ void edges(int height, int width, RGBTRIPLE **image) {
 }
 
 // Definition for Sepia filter
-void sepia(int height, int width, RGBTRIPLE **image) {
+void sepia(const int &height, const int &width, RGBTRIPLE **image) {
     
     // Iterating over each pixel
     for (int i {0}; i < height; ++i) {
