@@ -14,7 +14,7 @@ int main(int argc, char **argv) {
         // Get filter flag
         char filter {static_cast<char>(getopt(argc, argv, filtersOptions))};
 
-        // check validity
+        // Check validity
         if (filter == '?') {
             throw std::string {"Invalid filter."};
         }
@@ -36,7 +36,7 @@ int main(int argc, char **argv) {
             throw std::string {"Could not read : " + static_cast<std::string>(argv[optind])};
         }
 
-        // open output file
+        // Open output file
         FILE *outFile {fopen(argv[optind + 1], "w")};
         // check writability
         if (outFile == nullptr) {
@@ -68,7 +68,7 @@ int main(int argc, char **argv) {
                image[i] = new RGBTRIPLE[width];
         }
 
-        // checks for successful memory allocation
+        // Checks for successful memory allocation
         if (image == nullptr) {
             fclose(inFile);
             fclose(outFile);
@@ -92,30 +92,22 @@ int main(int argc, char **argv) {
         switch (filter) {
             // Blur
             case 'b':
-                // blur();
                 blur(height, width, image);
                 break;
-
             // Edges
             case 'e':
-                // edges();
                 edges(height, width, image);
                 break;
-
             // Grayscale
             case 'g':
-                // grayscale();
                 grayscale(height, width, image);
                 break;
-
             // Reflect
             case 'r':
-                // reflect();
                 reflect(height, width, image);
                 break;
-            // sepia
+            // Sepia
             case 's':
-                // sepia();
                 sepia(height, width, image);
                 break;
         }
@@ -150,7 +142,7 @@ int main(int argc, char **argv) {
         fclose(outFile);
 
     }
-    catch(std::string &ex) {
+    catch (std::string &ex) {
         std::cerr << ex << std::endl;
         return 1;
     }
