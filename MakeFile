@@ -1,2 +1,0 @@
-filter:
-	g++ -fsanitize=signed-integer-overflow -fsanitize=undefined -ggdb3 -O0 -std=c++11 -Wall -Werror -Wextra -Wno-sign-compare -Wno-unused-parameter -Wno-unused-variable -Wshadow -o filter main.cpp helpers.cpp -lm
