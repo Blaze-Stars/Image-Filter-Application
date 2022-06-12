@@ -8,7 +8,22 @@
 
 // Definition for grayscale filter
 void grayscale(int height, int width, RGBTRIPLE **image) {
-    // code to be written
+    
+    // create temporary value to store the calculations
+    int avg {0};
+    
+    // Iterating over each pixel
+    for (int i {0}; i < height; ++i) {
+        for (int j {0}; j < width; ++j) {
+            
+            // averages the color intensity and then applies the same value to all the colors to get gray
+            avg = round((image[i][j].rgbtBlue + image[i][j].rgbtGreen + image[i][j].rgbtRed) / 3.0);
+
+            image[i][j].rgbtBlue = avg;
+            image[i][j].rgbtGreen = avg;
+            image[i][j].rgbtRed = avg;
+        }
+    }
 }
 
 // Definition for Reflect filter (Horizontally)
