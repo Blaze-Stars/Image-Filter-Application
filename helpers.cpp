@@ -27,9 +27,9 @@ void blur(int height, int width, RGBTRIPLE **image) {
     //create a temporary table of colors to not alter the calculations
     RGBTRIPLE tempImg[height][width];
 
-    for (int i = 0; i < width; i++)
+    for (int i {0}; i < width; i++)
     {
-        for (int j = 0; j < height; j++)
+        for (int j {0}; j < height; j++)
         {
             sumBlue = 0;
             sumGreen = 0;
@@ -37,14 +37,14 @@ void blur(int height, int width, RGBTRIPLE **image) {
             count = 0;
 
             // sums values of the pixel and 8 neighboring ones, skips iteration if it goes outside the pic
-            for (int k = -1; k < 2; k++)
+            for (int k {-1}; k < 2; k++)
             {
                 if (j + k < 0 || j + k > height - 1)
                 {
                     continue;
                 }
 
-                for (int h = -1; h < 2; h++)
+                for (int h {-1}; h < 2; h++)
                 {
                     if (i + h < 0 || i + h > width - 1)
                     {
@@ -66,9 +66,9 @@ void blur(int height, int width, RGBTRIPLE **image) {
     }
 
     //copies values from temporary table
-    for (int i = 0; i < width; i++)
+    for (int i{0}; i < width; i++)
     {
-        for (int j = 0; j < height; j++)
+        for (int j{0}; j < height; j++)
         {
             image[j][i].rgbtBlue = tempImg[j][i].rgbtBlue;
             image[j][i].rgbtGreen = tempImg[j][i].rgbtGreen;
@@ -82,16 +82,6 @@ int limitRGB(int RGB)
 {
     if (RGB > 255)
     {
-        RGB = 255;
-    }
-
-    return RGB;
-}
-
-
-// Stops max value at 255 preventing overflow
-int limitRGB(int RGB) {
-    if (RGB > 255) {
         RGB = 255;
     }
 
