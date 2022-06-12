@@ -6,22 +6,22 @@
 #include <cstdlib>
 #include "helpers.h"
 
-// Defination for grayscale filter
+// Definition for grayscale filter
 void grayscale(int height, int width, RGBTRIPLE **image) {
     // code to be written
 }
 
-// Defination for Reflect filter (Horizontally)
+// Definition for Reflect filter (Horizontally)
 void reflect(int height, int width, RGBTRIPLE **image) {
     // code to be written
 }
 
-// Defination for Blur Filter
+// Definition for Blur Filter
 void blur(int height, int width, RGBTRIPLE **image) {
     // code to be written
 }
 
-// stops max value at 255 preventing overflow
+// Stops max value at 255 preventing overflow
 int limitRGB(int RGB) {
     if (RGB > 255) {
         RGB = 255;
@@ -30,12 +30,12 @@ int limitRGB(int RGB) {
     return RGB;
 }
 
-// Defination for Edges filter
+// Definition for Edges filter
 void edges(int height, int width, RGBTRIPLE **image) {
     // code to be written
 }
 
-// Defination for Sepia filter
+// Definition for Sepia filter
 void sepia(int height, int width, RGBTRIPLE **image) {
     for (int i {0}; i < height; ++i) {
         for (int j {0}; j < width; ++j) {
