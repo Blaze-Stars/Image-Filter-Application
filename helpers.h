@@ -1,19 +1,16 @@
 #include "bmp.h"
-#include <vector>
-using namespace std;
 
-// Convert image to grayscale
-void grayscale(int, int, std::vector<std::vector<RGBTRIPLE>>);
+// Convert Image to grayscale
+void grayscale(int, int, RGBTRIPLE **);
 
 // Reflect image horizontally
-void reflect(int, int, std::vector<std::vector<RGBTRIPLE>>);
-
-// Detect edges
-void edges(int, int, std::vector<std::vector<RGBTRIPLE>>);
+void reflect(int, int, RGBTRIPLE **);
 
 // Blur image
-void blur(int, int, std::vector<std::vector<RGBTRIPLE>>);
+void blur(int, int, RGBTRIPLE **);
+
+// Detect edges
+void edges(int, int, RGBTRIPLE **);
 
 // Sepia image
-void sepia(int, int, std::vector<std::vector<RGBTRIPLE>>);
-
+void sepia(int, int, RGBTRIPLE **);
