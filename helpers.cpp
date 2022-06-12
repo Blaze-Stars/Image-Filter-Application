@@ -97,11 +97,17 @@ void sepia(int height, int width, RGBTRIPLE **image) {
     // Iterating over each pixel
     for (int i {0}; i < height; ++i) {
         for (int j {0}; j < width; ++j) {
+<<<<<<< HEAD
 
             // separately stored modified colured channel
             int sepiaRed   {(.393 * image[i][j].rgbtRed) + (.769 * image[i][j].rgbtGreen) + (.189 * image[i][j].rgbtBlue)};
             int sepiaGreen {(.349 * image[i][j].rgbtRed) + (.686 * image[i][j].rgbtGreen) + (.168 * image[i][j].rgbtBlue)};
             int sepiaBlue  {(.272 * image[i][j].rgbtRed) + (.534 * image[i][j].rgbtGreen) + (.131 * image[i][j].rgbtBlue)};
+=======
+            int sepiaRed   {static_cast<int>(.393 * image[i][j].rgbtRed + .769 * image[i][j].rgbtGreen + .189 * image[i][j].rgbtBlue)};
+            int sepiaGreen {static_cast<int>(.349 * image[i][j].rgbtRed + .686 * image[i][j].rgbtGreen + .168 * image[i][j].rgbtBlue)};
+            int sepiaBlue  {static_cast<int>(.272 * image[i][j].rgbtRed + .534 * image[i][j].rgbtGreen + .131 * image[i][j].rgbtBlue)};
+>>>>>>> 0f28696cfe64b683efe2394b881706ac3934417d
 
             // checking for boundary limit i.e 255 and storing correct values to image
             image[i][j].rgbtRed   = sepiaRed > 255 ? 255 : round(sepiaRed);
