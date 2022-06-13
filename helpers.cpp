@@ -32,7 +32,7 @@ int limitRGB(int RGB) {
 
 // Definition for Edges filter
 void edges(const int &height, const int &width, RGBTRIPLE **image) {
-    // create temporary values to store the calculations
+    // Create temporary values to store the calculations
     float sumBlueX  {0.0f};
     float sumGreenX {0.0f};
     float sumRedX   {0.0f};
@@ -43,20 +43,19 @@ void edges(const int &height, const int &width, RGBTRIPLE **image) {
     int gX {0};
     int gY {0};
 
-    // create a temporary table of colors to not alter the calculations
+    // Create a temporary table of colors to not alter the calculations
     RGBTRIPLE tempImg[height][width];
 
     for (int i {0}; i < width; ++i) {
         for (int j {0}; j < height; ++j) {
-            
-            // reinitialize to 0 again after each iteration
+            // Reinitialize to 0 again after each iteration
             sumBlueX  = 0.0f;
             sumGreenX = 0.0f;
             sumRedX   = 0.0f;
             sumBlueY  = 0.0f;
             sumGreenY = 0.0f;
             sumRedY   = 0.0f;
-            // sums values of the pixel and 8 neighboring ones after applying a modifier, skips iteration if it goes outside the pic
+            // Sums values of the pixel and 8 neighboring ones after applying a modifier, skips iteration if it goes outside the pic
             for (int k {-1}; k < 2; ++k) {
                 if (j + k < 0 || j + k > height - 1) {
                     continue;
@@ -67,7 +66,7 @@ void edges(const int &height, const int &width, RGBTRIPLE **image) {
                         continue;
                     }
 
-                    // calculates modifiers for vertical and horizantal borders
+                    // Calculates modifiers for vertical and horizantal borders
                     gX = k + 1 * k - k * abs(h);
                     gY = h + 1 * h - h * abs(k);
 
@@ -81,14 +80,14 @@ void edges(const int &height, const int &width, RGBTRIPLE **image) {
                 }
             }
 
-            // obtains the final values of the pixels combining X and Y calculations
+            // Obtains the final values of the pixels combining X and Y calculations
             tempImg[j][i].rgbtBlue  = limitRGB(round(sqrt(sumBlueX * sumBlueX + sumBlueY * sumBlueY)));
             tempImg[j][i].rgbtGreen = limitRGB(round(sqrt(sumGreenX * sumGreenX + sumGreenY * sumGreenY)));
             tempImg[j][i].rgbtRed   = limitRGB(round(sqrt(sumRedX * sumRedX + sumRedY * sumRedY)));
         }
     }
 
-    // copies values from temporary table
+    // Copies values from temporary table
     for (int i {0}; i < width; ++i) {
         for (int j {0}; j < height; ++j) {
             image[j][i].rgbtBlue  = tempImg[j][i].rgbtBlue;
