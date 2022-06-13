@@ -7,72 +7,73 @@
 #include "helpers.h"
 
 // Definition for grayscale filter
-void grayscale(int height, int width, RGBTRIPLE **image) {
+void grayscale(int height, int width, RGBTRIPLE **image)
+{
     // code to be written
 }
 
 // Definition for Reflect filter (Horizontally)
-void reflect(int height, int width, RGBTRIPLE **image) {
+void reflect(int height, int width, RGBTRIPLE **image)
+{
     // code to be written
 }
 
 // Definition for Blur Filter
 void blur(int height, int width, RGBTRIPLE **image) {
-    // code to be written
-    
+
+    //Initializing variables to 0
     int sumBlue {0};
     int sumGreen {0};
     int sumRed {0};
     int count {0};
-    //create a temporary table of colors to not alter the calculations
+    // create a temporary table of colors to not alter the calculations
     RGBTRIPLE tempImg[height][width];
 
-    for (int i {0}; i < width; i++)
-    {
-        for (int j {0}; j < height; j++)
-        {
-            sumBlue = 0;
+    for (int i {0}; i < width; ++i) {
+        for (int j {0}; j < height; ++j) {
+        //Reinitialization of variables after each iteration
+            sumBlue  = 0;
             sumGreen = 0;
-            sumRed = 0;
-            count = 0;
+            sumRed   = 0;
+            count    = 0;
 
             // sums values of the pixel and 8 neighboring ones, skips iteration if it goes outside the pic
-            for (int k {-1}; k < 2; k++)
-            {
-                if (j + k < 0 || j + k > height - 1)
-                {
+            for (int k {-1}; k < 2; ++k) {
+            
+                if (j + k < 0 || j + k > height - 1) {
+                
                     continue;
                 }
 
-                for (int h {-1}; h < 2; h++)
-                {
-                    if (i + h < 0 || i + h > width - 1)
-                    {
+                for (int h {-1}; h < 2; ++h) {
+                
+                    if (i + h < 0 || i + h > width - 1) {
+                    
                         continue;
                     }
 
-                    sumBlue += image[j + k][i + h].rgbtBlue;
+                    sumBlue  += image[j + k][i + h].rgbtBlue;
                     sumGreen += image[j + k][i + h].rgbtGreen;
-                    sumRed += image[j + k][i + h].rgbtRed;
-                    count++;
+                    sumRed   += image[j + k][i + h].rgbtRed;
+                    ++count;
                 }
             }
 
             // averages the sum to make picture look blurrier
-            tempImg[j][i].rgbtBlue = round(sumBlue / (float)count);
+            tempImg[j][i].rgbtBlue  = round(sumBlue / (float)count);
             tempImg[j][i].rgbtGreen = round(sumGreen / (float)count);
-            tempImg[j][i].rgbtRed = round(sumRed / (float)count);
+            tempImg[j][i].rgbtRed   = round(sumRed / (float)count);
         }
     }
 
-    //copies values from temporary table
-    for (int i{0}; i < width; i++)
-    {
-        for (int j{0}; j < height; j++)
-        {
-            image[j][i].rgbtBlue = tempImg[j][i].rgbtBlue;
+    // copies values from temporary table
+    for (int i{0}; i < width; ++i) {
+    
+        for (int j{0}; j < height; ++j) {
+        
+            image[j][i].rgbtBlue  = tempImg[j][i].rgbtBlue;
             image[j][i].rgbtGreen = tempImg[j][i].rgbtGreen;
-            image[j][i].rgbtRed = tempImg[j][i].rgbtRed;
+            image[j][i].rgbtRed   = tempImg[j][i].rgbtRed;
         }
     }
 }
@@ -80,8 +81,8 @@ void blur(int height, int width, RGBTRIPLE **image) {
 // stops max value at 255 preventing overflow
 int limitRGB(int RGB)
 {
-    if (RGB > 255)
-    {
+    if (RGB > 255) {
+    
         RGB = 255;
     }
 
@@ -89,24 +90,27 @@ int limitRGB(int RGB)
 }
 
 // Definition for Edges filter
-void edges(int height, int width, RGBTRIPLE **image) {
-    
+void edges(int height, int width, RGBTRIPLE **image)
+{
+
     // create temporary values to store the calculations
-    float sumBlueX {0.0};
-    float sumGreenX {0.0};
-    float sumRedX {0.0};
-    float sumBlueY {0.0};
-    float sumGreenY {0.0};
-    float sumRedY {0.0};
-    int gX {0};
-    int gY {0};
+    float sumBlueX{0.0};
+    float sumGreenX{0.0};
+    float sumRedX{0.0};
+    float sumBlueY{0.0};
+    float sumGreenY{0.0};
+    float sumRedY{0.0};
+    int gX{0};
+    int gY{0};
 
     // create a temporary table of colors to not alter the calculations
     RGBTRIPLE tempImg[height][width];
 
-    for (int i {0}; i < width; i++) {
-        for (int j {0}; j < height; j++) {
-            
+    for (int i{0}; i < width; i++)
+    {
+        for (int j{0}; j < height; j++)
+        {
+
             // reinitialize to 0 again after each iteration
             sumBlueX = 0.0;
             sumGreenX = 0.0;
@@ -115,13 +119,17 @@ void edges(int height, int width, RGBTRIPLE **image) {
             sumGreenY = 0.0;
             sumRedY = 0.0;
             // sums values of the pixel and 8 neighboring ones after applying a modifier, skips iteration if it goes outside the pic
-            for (int k {-1}; k < 2; k++) {
-                if (j + k < 0 || j + k > height - 1) {
+            for (int k{-1}; k < 2; k++)
+            {
+                if (j + k < 0 || j + k > height - 1)
+                {
                     continue;
                 }
 
-                for (int h {-1}; h < 2; h++) {
-                    if (i + h < 0 || i + h > width - 1) {
+                for (int h{-1}; h < 2; h++)
+                {
+                    if (i + h < 0 || i + h > width - 1)
+                    {
                         continue;
                     }
 
@@ -147,8 +155,10 @@ void edges(int height, int width, RGBTRIPLE **image) {
     }
 
     // copies values from temporary table
-    for (int i {0}; i < width; i++) {
-        for (int j {0}; j < height; j++) {
+    for (int i{0}; i < width; i++)
+    {
+        for (int j{0}; j < height; j++)
+        {
             image[j][i].rgbtBlue = tempImg[j][i].rgbtBlue;
             image[j][i].rgbtGreen = tempImg[j][i].rgbtGreen;
             image[j][i].rgbtRed = tempImg[j][i].rgbtRed;
@@ -157,21 +167,24 @@ void edges(int height, int width, RGBTRIPLE **image) {
 }
 
 // Definition for Sepia filter
-void sepia(int height, int width, RGBTRIPLE **image) {
-    
+void sepia(int height, int width, RGBTRIPLE **image)
+{
+
     // Iterating over each pixel
-    for (int i {0}; i < height; ++i) {
-        for (int j {0}; j < width; ++j) {
+    for (int i{0}; i < height; ++i)
+    {
+        for (int j{0}; j < width; ++j)
+        {
 
             // separately stored modified colured channel
-            int sepiaRed   = (.393 * image[i][j].rgbtRed) + (.769 * image[i][j].rgbtGreen) + (.189 * image[i][j].rgbtBlue);
+            int sepiaRed = (.393 * image[i][j].rgbtRed) + (.769 * image[i][j].rgbtGreen) + (.189 * image[i][j].rgbtBlue);
             int sepiaGreen = (.349 * image[i][j].rgbtRed) + (.686 * image[i][j].rgbtGreen) + (.168 * image[i][j].rgbtBlue);
-            int sepiaBlue  = (.272 * image[i][j].rgbtRed) + (.534 * image[i][j].rgbtGreen) + (.131 * image[i][j].rgbtBlue);
+            int sepiaBlue = (.272 * image[i][j].rgbtRed) + (.534 * image[i][j].rgbtGreen) + (.131 * image[i][j].rgbtBlue);
 
             // checking for boundary limit i.e 255 and storing correct values to image
-            image[i][j].rgbtRed   = sepiaRed > 255 ? 255 : round(sepiaRed);
+            image[i][j].rgbtRed = sepiaRed > 255 ? 255 : round(sepiaRed);
             image[i][j].rgbtGreen = sepiaGreen > 255 ? 255 : round(sepiaGreen);
-            image[i][j].rgbtBlue  = sepiaBlue > 255 ? 255 : round(sepiaBlue);
+            image[i][j].rgbtBlue = sepiaBlue > 255 ? 255 : round(sepiaBlue);
         }
     }
 }
