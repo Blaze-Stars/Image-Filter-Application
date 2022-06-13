@@ -12,7 +12,7 @@ void grayscale(const int &height, const int &width, RGBTRIPLE **image) {
     int avg {0};
     for (int i {0}; i < height; ++i) {
         for (int j {0}; j < width; ++j) {
-            // averages the color intensity and then applies the same value to all the colors to get gray
+            // Averages the color intensity and then applies the same value to all the colors to get gray
             avg = round((image[i][j].rgbtBlue + image[i][j].rgbtGreen + image[i][j].rgbtRed) / static_cast<float>3.0);
 
             image[i][j].rgbtBlue  = avg;
