@@ -28,7 +28,7 @@ void blur(const int &height, const int &width, RGBTRIPLE **image) {
 
     for (int i {0}; i < width; ++i) {
         for (int j {0}; j < height; ++j) {
-        //Reinitialization of variables after each iteration
+            // Reinitialization of variables after each iteration
             sumBlue  = 0;
             sumGreen = 0;
             sumRed   = 0;
