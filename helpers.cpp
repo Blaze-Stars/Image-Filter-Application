@@ -18,7 +18,52 @@ void reflect(const int &height, const int &width, RGBTRIPLE **image) {
 
 // Definition for Blur Filter
 void blur(const int &height, const int &width, RGBTRIPLE **image) {
-    // code to be written
+    // Initialize variables to 0
+    int sumBlue  {0};
+    int sumGreen {0};
+    int sumRed   {0};
+    int count    {0};
+    // Create a temporary table of colors to not alter the calculations
+    RGBTRIPLE tempImg[height][width];
+
+    for (int i {0}; i < width; ++i) {
+        for (int j {0}; j < height; ++j) {
+        //Reinitialization of variables after each iteration
+            sumBlue  = 0;
+            sumGreen = 0;
+            sumRed   = 0;
+            count    = 0;
+
+            // Sums values of the pixel and 8 neighboring ones, skips iteration if it goes outside the pic
+            for (int k {-1}; k < 2; ++k) {
+                if (j + k < 0 || j + k > height - 1) {
+                    continue;
+                }
+                for (int h {-1}; h < 2; ++h) {
+                    if (i + h < 0 || i + h > width - 1) {
+                        continue;
+                    }
+                    sumBlue  += image[j + k][i + h].rgbtBlue;
+                    sumGreen += image[j + k][i + h].rgbtGreen;
+                    sumRed   += image[j + k][i + h].rgbtRed;
+                    ++count;
+                }
+            }
+
+            // Averages the sum to make picture look blurrier
+            tempImg[j][i].rgbtBlue  = round(sumBlue  / static_cast<float>(count));
+            tempImg[j][i].rgbtGreen = round(sumGreen / static_cast<float>(count));
+            tempImg[j][i].rgbtRed   = round(sumRed   / static_cast<float>(count));
+        }
+    }
+    // Copies values from temporary table
+    for (int i {0}; i < width; ++i) {
+        for (int j {0}; j < height; ++j) {
+            image[j][i].rgbtBlue  = tempImg[j][i].rgbtBlue;
+            image[j][i].rgbtGreen = tempImg[j][i].rgbtGreen;
+            image[j][i].rgbtRed   = tempImg[j][i].rgbtRed;
+        }
+    }
 }
 
 // Stops max value at 255 preventing overflow
