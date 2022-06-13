@@ -16,31 +16,31 @@ int main(int argc, char **argv) {
 
         // Check validity
         if (filter == '?') {
-            throw std::string {"Invalid filter."};
+            throw std::runtime_error {"Invalid filter."};
         }
 
         // Ensure only one filter
         if (getopt(argc, argv, filtersOptions) != -1) {
-            throw std::string {"Only one filter allowed."};
+            throw std::runtime_error {"Only one filter allowed."};
         }
 
         // Ensure proper usage
         if (argc != optind + 2) {
-            throw std::string {"Usage: filter [flag] infile outfile"};
+            throw std::runtime_error {"Usage: filter [flag] infile outfile"};
         }
 
         // Open input file 
         FILE *inFile {fopen(argv[optind], "r")};
         // check readability
         if (inFile == nullptr) {
-            throw std::string {"Could not read : " + static_cast<std::string>(argv[optind])};
+            throw std::runtime_error {"Could not read : " + static_cast<std::string>(argv[optind])};
         }
 
         // Open output file
         FILE *outFile {fopen(argv[optind + 1], "w")};
         // check writability
         if (outFile == nullptr) {
-            throw std::string {"Could not create : " + static_cast<std::string>(argv[optind + 1])};
+            throw std::runtime_error {"Could not create : " + static_cast<std::string>(argv[optind + 1])};
         }
 
         // Read inFile's BITMAPFILEHEADER
@@ -56,7 +56,7 @@ int main(int argc, char **argv) {
             fclose(outFile);
             fclose(inFile);
             
-            throw std::string {"Unsupported file format."};
+            throw std::runtime_error {"Unsupported file format."};
         }
 
         int height {abs(bi.biHeight)};
@@ -73,7 +73,7 @@ int main(int argc, char **argv) {
             fclose(inFile);
             fclose(outFile);
 
-            throw std::string {"Not enough memory to store image."};
+            throw std::runtime_error {"Not enough memory to store image."};
         }
 
         // Determine padding for scanlines
@@ -142,8 +142,8 @@ int main(int argc, char **argv) {
         fclose(outFile);
 
     }
-    catch (std::string &ex) {
-        std::cerr << ex << std::endl;
+    catch (std::exception const& ex) {
+        std::cerr << ex.what() << std::endl;
         return 1;
     }
     

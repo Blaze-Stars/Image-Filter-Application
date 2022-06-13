@@ -41,6 +41,7 @@ void blur(const int &height, const int &width, RGBTRIPLE **image) {
     int sumGreen {0};
     int sumRed   {0};
     int count    {0};
+
     // Create a temporary table of colors to not alter the calculations
     RGBTRIPLE tempImg[height][width];
 
@@ -52,15 +53,17 @@ void blur(const int &height, const int &width, RGBTRIPLE **image) {
             sumRed   = 0;
             count    = 0;
 
-            // Sums values of the pixel and 8 neighboring ones, skips iteration if it goes outside the pic
+            // Sums values of the pixel and 8 neighboring ones, skips iteration if it goes outside the image
             for (int k {-1}; k < 2; ++k) {
                 if (j + k < 0 || j + k > height - 1) {
                     continue;
                 }
+
                 for (int h {-1}; h < 2; ++h) {
                     if (i + h < 0 || i + h > width - 1) {
                         continue;
                     }
+
                     sumBlue  += image[j + k][i + h].rgbtBlue;
                     sumGreen += image[j + k][i + h].rgbtGreen;
                     sumRed   += image[j + k][i + h].rgbtRed;
@@ -102,6 +105,7 @@ void edges(const int &height, const int &width, RGBTRIPLE **image) {
     float sumBlueY  {0.0f};
     float sumGreenY {0.0f};
     float sumRedY   {0.0f};
+
     // Modifiers for vertical and horizantal borders
     int gX {0};
     int gY {0};
@@ -118,7 +122,8 @@ void edges(const int &height, const int &width, RGBTRIPLE **image) {
             sumBlueY  = 0.0f;
             sumGreenY = 0.0f;
             sumRedY   = 0.0f;
-            // Sums values of the pixel and 8 neighboring ones after applying a modifier, skips iteration if it goes outside the pic
+
+            // Sums values of the pixel and 8 neighboring ones after applying a modifier, skips iteration if it goes outside the image
             for (int k {-1}; k < 2; ++k) {
                 if (j + k < 0 || j + k > height - 1) {
                     continue;
@@ -166,9 +171,9 @@ void sepia(const int &height, const int &width, RGBTRIPLE **image) {
     for (int i {0}; i < height; ++i) {
         for (int j {0}; j < width; ++j) {
             // Separately stored modified colured channel
-            int sepiaRed   {static_cast<int>(.393 * image[i][j].rgbtRed + .769 * image[i][j].rgbtGreen + .189 * image[i][j].rgbtBlue)};
-            int sepiaGreen {static_cast<int>(.349 * image[i][j].rgbtRed + .686 * image[i][j].rgbtGreen + .168 * image[i][j].rgbtBlue)};
-            int sepiaBlue  {static_cast<int>(.272 * image[i][j].rgbtRed + .534 * image[i][j].rgbtGreen + .131 * image[i][j].rgbtBlue)};
+            int sepiaRed   {static_cast<int>(.393 * image[i][j].rgbtRed) + static_cast<int>(.769 * image[i][j].rgbtGreen) + static_cast<int>(.189 * image[i][j].rgbtBlue)};
+            int sepiaGreen {static_cast<int>(.349 * image[i][j].rgbtRed) + static_cast<int>(.686 * image[i][j].rgbtGreen) + static_cast<int>(.168 * image[i][j].rgbtBlue)};
+            int sepiaBlue  {static_cast<int>(.272 * image[i][j].rgbtRed) + static_cast<int>(.534 * image[i][j].rgbtGreen) + static_cast<int>(.131 * image[i][j].rgbtBlue)};
 
             // Checking for boundary limit i.e 255 and storing correct values to image
             image[i][j].rgbtRed   = sepiaRed > 255 ? 255 : round(sepiaRed);
