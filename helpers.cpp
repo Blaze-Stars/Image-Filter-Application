@@ -13,23 +13,23 @@ void grayscale(const int &height, const int &width, RGBTRIPLE **image) {
 
 // Definition for Reflect filter (Horizontally)
 void reflect(const int &height, const int &width, RGBTRIPLE **image) {
-   for (int i = 0; i < height; i++) {
-        for (int j = 0; j < width / 2; j++) {
+   for (int i {0}; i < height; i++) {
+        for (int j {0}; j < width / 2; j++) {
             // use of a temporary structure to swap values
             RGBTRIPLE tempImg;
 
-            tempImg.rgbtBlue = image[i][j].rgbtBlue;
+            tempImg.rgbtBlue  = image[i][j].rgbtBlue;
             tempImg.rgbtGreen = image[i][j].rgbtGreen;
-            tempImg.rgbtRed = image[i][j].rgbtRed;
+            tempImg.rgbtRed   = image[i][j].rgbtRed;
 
             // swap pixels with the ones on the opposite side of the picture and viceversa
-            image[i][j].rgbtBlue = image[i][width - j - 1].rgbtBlue;
+            image[i][j].rgbtBlue  = image[i][width - j - 1].rgbtBlue;
             image[i][j].rgbtGreen = image[i][width - j - 1].rgbtGreen;
-            image[i][j].rgbtRed = image[i][width - j - 1].rgbtRed;
+            image[i][j].rgbtRed   = image[i][width - j - 1].rgbtRed;
 
-            image[i][width - j - 1].rgbtBlue = tempImg.rgbtBlue;
+            image[i][width - j - 1].rgbtBlue  = tempImg.rgbtBlue;
             image[i][width - j - 1].rgbtGreen = tempImg.rgbtGreen;
-            image[i][width - j - 1].rgbtRed = tempImg.rgbtRed;
+            image[i][width - j - 1].rgbtRed   = tempImg.rgbtRed;
         }
     } 
 }
