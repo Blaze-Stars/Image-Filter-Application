@@ -142,7 +142,7 @@ int main(int argc, char **argv) {
         fclose(outFile);
 
     }
-    catch (std::exception const& ex) {
+    catch (std::exception const &ex) {
         std::cerr << ex.what() << std::endl;
         return 1;
     }
