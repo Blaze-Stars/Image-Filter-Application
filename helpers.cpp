@@ -18,12 +18,12 @@ void reflect(const int &height, const int &width, RGBTRIPLE **image) {
 
 // Definition for Blur Filter
 void blur(const int &height, const int &width, RGBTRIPLE **image) {
-    // initialize variables to 0
+    // Initialize variables to 0
     int sumBlue  {0};
     int sumGreen {0};
     int sumRed   {0};
     int count    {0};
-    // create a temporary table of colors to not alter the calculations
+    // Create a temporary table of colors to not alter the calculations
     RGBTRIPLE tempImg[height][width];
 
     for (int i {0}; i < width; ++i) {
@@ -34,7 +34,7 @@ void blur(const int &height, const int &width, RGBTRIPLE **image) {
             sumRed   = 0;
             count    = 0;
 
-            // sums values of the pixel and 8 neighboring ones, skips iteration if it goes outside the pic
+            // Sums values of the pixel and 8 neighboring ones, skips iteration if it goes outside the pic
             for (int k {-1}; k < 2; ++k) {
                 if (j + k < 0 || j + k > height - 1) {
                     continue;
@@ -50,21 +50,22 @@ void blur(const int &height, const int &width, RGBTRIPLE **image) {
                 }
             }
 
-            // averages the sum to make picture look blurrier
+            // Averages the sum to make picture look blurrier
             tempImg[j][i].rgbtBlue  = round(sumBlue  / static_cast<float>(count));
             tempImg[j][i].rgbtGreen = round(sumGreen / static_cast<float>(count));
             tempImg[j][i].rgbtRed   = round(sumRed   / static_cast<float>(count));
         }
     }
-    // copies values from temporary table
-    for (int i{0}; i < width; ++i) {
-        for (int j{0}; j < height; ++j) {
+    // Copies values from temporary table
+    for (int i {0}; i < width; ++i) {
+        for (int j {0}; j < height; ++j) {
             image[j][i].rgbtBlue  = tempImg[j][i].rgbtBlue;
             image[j][i].rgbtGreen = tempImg[j][i].rgbtGreen;
             image[j][i].rgbtRed   = tempImg[j][i].rgbtRed;
         }
     }
 }
+
 // Stops max value at 255 preventing overflow
 int limitRGB(int RGB) {
     if (RGB > 255) {
