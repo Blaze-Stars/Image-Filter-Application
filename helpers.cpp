@@ -13,8 +13,8 @@ void grayscale(const int &height, const int &width, RGBTRIPLE **image) {
 
 // Definition for Reflect filter (Horizontally)
 void reflect(const int &height, const int &width, RGBTRIPLE **image) {
-   for (int i {0}; i < height; i++) {
-        for (int j {0}; j < width / 2; j++) {
+   for (int i {0}; i < height; ++i) {
+        for (int j {0}; j < width / 2; ++j) {
             // use of a temporary structure to swap values
             RGBTRIPLE tempImg;
 
