@@ -8,12 +8,12 @@
 
 ## Project
 
-This Project is Associated with Department of Integrated MCA Utkal Uniersity, Bhubaneshwar, Odisha.
+This Project is Associated with Department of Integrated MCA Utkal University, Bhubaneshwar, Odisha.
 ## Building
 
-To `build Image-Filter-App` Make sure To install make in your System and g++ compiler.<br>
-Make installation in windows -> [link](https://www.technewstoday.com/install-and-use-make-in-windows/)<br>
-Make installation in Ubuntu -> [link](https://askubuntu.com/questions/161104/how-do-i-install-make) 
+To `build Image-Filter-App` Make sure To install `make` in your System and g++ compiler.<br>
+`make` installation in windows -> [link](https://www.technewstoday.com/install-and-use-make-in-windows/)<br>
+`make` installation in Ubuntu -> [link](https://askubuntu.com/questions/161104/how-do-i-install-make) 
 
 To Build `Image-Filter-App` go to your project directory and Open our Terminal and just type.
 ```shell
