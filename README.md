@@ -42,5 +42,5 @@ To Use any of the Filters :
 ```
 ### NOTE
 ```
-The Above example shows output for grayscale filter, you can change the flags and image to apply any other Filter 
+The above example shows output for the grayscale filter, you can change the flags and image to apply any other filter 
 ```
