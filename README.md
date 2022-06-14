@@ -25,7 +25,7 @@ make
 Boom! You have successfully build `Image-Filter-Application`
 ## Running
 
-+ Currently `Image-Filter-Application` supports 5 Filters, This Filters can be used using following Flags below.<br>
++ Currently `Image-Filter-Application` supports `5 Filters`, these filters can be used using the following flags below.<br>
 + We have several example Images to test these Filters stored in [imgDB](https://github.com/Blaze-Stars/Image-Filter-Application/tree/main/img-db)
 
 | Filters | Flag |
