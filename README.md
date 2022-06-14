@@ -8,7 +8,10 @@
 
 ## Project
 
-This Project is Associated with Department of Integrated MCA Utkal University, Bhubaneshwar, Odisha.
+This Project is Associated with Department of Integrated MCA Utkal University, Bhubaneshwar, Odisha.<br>
+This is a command line Application which can be used in Terminal.<br>
+We will be adding GUI to this application in Future.
+
 ## Building
 
 To `build Image-Filter-App` Make sure To install `make` in your System and g++ compiler.<br>
