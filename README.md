@@ -18,7 +18,7 @@ To `build Image-Filter-App` Make sure To install `make` in your System and g++ c
 `make` installation in windows -> [link](https://www.technewstoday.com/install-and-use-make-in-windows/)<br>
 `make` installation in Ubuntu -> [link](https://askubuntu.com/questions/161104/how-do-i-install-make) 
 
-To Build `Image-Filter-App` go to your project directory and Open our Terminal and just type.
+To build `Image-Filter-App`, go to your project directory and open your `Terminal` and type.
 ```shell
 make
 ```
