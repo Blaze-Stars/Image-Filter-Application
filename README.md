@@ -1,2 +1,43 @@
 # Image-Filter-Application
 ### `An Application to apply different Filters to different BMPs Images`
+## Table of Contents
+
+1) [An overview](#project)
+2) [Building Image-Filter-Application](#building)
+3) [Running Image-Filter-Application](#running)
+
+## Project
+
+This Project is Associated with Department of Integrated MCA Utkal Uniersity, Bhubaneshwar, Odisha.
+## Building
+
+To `build Image-Filter-App` Make sure To install make in your System and g++ compiler.<br>
+Make installation in windows -> [link](https://www.technewstoday.com/install-and-use-make-in-windows/)<br>
+Make installation in Ubuntu -> [link](https://askubuntu.com/questions/161104/how-do-i-install-make) 
+
+To Build `Image-Filter-App` go to your project directory and Open our Terminal and just type.
+```shell
+make
+```
+Boom! You have successfully build `Image-Filter-Application`
+## Running
+
++ Currently `Image-Filter-Application` supports 5 Filters, This Filters can be used using following Flags below.<br>
++ We have several example Images to test these Filters stored in [imgDB](https://github.com/Blaze-Stars/Image-Filter-Application/tree/main/img-db)
+
+| Filters | Flag |
+| ------- | ----- |
+| GrayScale | -g |
+| Blur | -b |
+| Reflect | -r |
+| Edge | -e |
+| Sepia | -s |
+
+To Use any of the Filters :
+```shell
+./filter -g img-db/<pickAnyImage> <YourOutputFileName>.bmp
+```
+### NOTE
+```
+The Above example shows output for grayscale filter, you can change the flags and image to apply any other Filter 
+```
