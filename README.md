@@ -12,7 +12,7 @@ This project is associated with the Department of Integrated MCA, Utkal Universi
 This is a command line application which can be used in terminal.<br>
 We will be adding GUI to this application in future.
 
-## pre-requisite
+## Pre-requisite
 
 To build `Image-Filter-App` make sure To install `make` in your System and `g++` compiler.<br>
 `make` installation in windows -> [link](https://www.technewstoday.com/install-and-use-make-in-windows/)<br>
