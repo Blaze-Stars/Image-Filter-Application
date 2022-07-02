@@ -8,6 +8,11 @@
 // main file
 int main(int argc, char **argv) {
     try {
+        // Ensure proper usage
+        if (argc != 3) {
+            throw std::runtime_error {"Usage: filter [flag] infile outfile"};
+        }
+
         // Define allowable filters
         std::string filtersOptions {"bBeEgGrRsS"};
         // To read input option(s) from terminal
@@ -44,11 +49,6 @@ int main(int argc, char **argv) {
             else {
                 std::cout << "Invalid filter option.\nTry again..." << std::endl;
             }
-        }
-
-        // Ensure proper usage
-        if (argc != 3) {
-            throw std::runtime_error {"Usage: filter [flag] infile outfile"};
         }
 
         // Open input file 
