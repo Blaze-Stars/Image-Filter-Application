@@ -10,7 +10,23 @@ int main(int argc, char **argv) {
     try {
         // Ensure proper usage
         if (argc != 3) {
-            throw std::runtime_error {"Usage: filter [flag] infile outfile"};
+            throw std::runtime_error {"Usage: filter infile outfile"};
+        }
+
+        // Open input file 
+        FILE *inFile {fopen(argv[1], "r")};
+
+        // check readability
+        if (inFile == nullptr) {
+            throw std::runtime_error {"Could not read : " + static_cast<std::string>(argv[1])};
+        }
+
+        // Open output file
+        FILE *outFile {fopen(argv[2], "w")};
+
+        // check writability
+        if (outFile == nullptr) {
+            throw std::runtime_error {"Could not create : " + static_cast<std::string>(argv[2])};
         }
 
         // Define allowable filters
@@ -40,7 +56,6 @@ int main(int argc, char **argv) {
             
             // check validates option
             if (filtersOptions.find(filter) != std::string::npos) {
-                std::cout << "Good choice" << std::endl;
                 break;
             }
             else if (filter == 'q' || filter == 'Q') {
@@ -49,22 +64,6 @@ int main(int argc, char **argv) {
             else {
                 std::cout << "Invalid filter option.\nTry again..." << std::endl;
             }
-        }
-
-        // Open input file 
-        FILE *inFile {fopen(argv[1], "r")};
-
-        // check readability
-        if (inFile == nullptr) {
-            throw std::runtime_error {"Could not read : " + static_cast<std::string>(argv[1])};
-        }
-
-        // Open output file
-        FILE *outFile {fopen(argv[2], "w")};
-
-        // check writability
-        if (outFile == nullptr) {
-            throw std::runtime_error {"Could not create : " + static_cast<std::string>(argv[2])};
         }
 
         // Read inFile's BITMAPFILEHEADER
@@ -116,22 +115,31 @@ int main(int argc, char **argv) {
         switch (filter) {
             // Blur
             case 'b':
+                std::cout << "Applied Blur filter successfully..." << std::endl;
                 blur(height, width, image);
                 break;
+
             // Edges
             case 'e':
+                std::cout << "Applied Edge Filter successfully..." << std::endl;
                 edges(height, width, image);
                 break;
+
             // Grayscale
             case 'g':
+                std::cout << "Applied Grayscale filter successfully..." << std::endl;
                 grayscale(height, width, image);
                 break;
+
             // Reflect
             case 'r':
+                std::cout << "Applied Reflect filter successfully..." << std::endl;
                 reflect(height, width, image);
                 break;
+
             // Sepia
             case 's':
+                std::cout << "Applied Sepia filter successfully..." << std::endl;
                 sepia(height, width, image);
                 break;
         }
