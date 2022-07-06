@@ -1,4 +1,5 @@
 #include <getopt.h>
+// #include <limits>
 #include <iostream>
 #include <string>
 #include <cstdlib>
@@ -7,39 +8,62 @@
 // main file
 int main(int argc, char **argv) {
     try {
-        // Define allowable filters
-        const char *filtersOptions {"begrs"};
-
-        // Get filter flag
-        char filter {static_cast<char>(getopt(argc, argv, filtersOptions))};
-
-        // Check validity
-        if (filter == '?') {
-            throw std::runtime_error {"Invalid filter."};
-        }
-
-        // Ensure only one filter
-        if (getopt(argc, argv, filtersOptions) != -1) {
-            throw std::runtime_error {"Only one filter allowed."};
-        }
-
         // Ensure proper usage
-        if (argc != optind + 2) {
-            throw std::runtime_error {"Usage: filter [flag] infile outfile"};
+        if (argc != 3) {
+            throw std::runtime_error {"Usage: filter infile outfile"};
         }
 
         // Open input file 
-        FILE *inFile {fopen(argv[optind], "r")};
+        FILE *inFile {fopen(argv[1], "r")};
+
         // check readability
         if (inFile == nullptr) {
-            throw std::runtime_error {"Could not read : " + static_cast<std::string>(argv[optind])};
+            throw std::runtime_error {"Could not read : " + static_cast<std::string>(argv[1])};
         }
 
         // Open output file
-        FILE *outFile {fopen(argv[optind + 1], "w")};
+        FILE *outFile {fopen(argv[2], "w")};
+
         // check writability
         if (outFile == nullptr) {
-            throw std::runtime_error {"Could not create : " + static_cast<std::string>(argv[optind + 1])};
+            throw std::runtime_error {"Could not create : " + static_cast<std::string>(argv[2])};
+        }
+
+        // Define allowable filters
+        std::string filtersOptions {"bBeEgGrRsS"};
+        // To read input option(s) from terminal
+        std::string instr;
+        
+        // Get filter option
+        char filter {'\0'};
+
+        while(true) {
+            // Filter menu
+            std::cout << "\n\n FILTER    : OPTION" << std::endl;
+            std::cout << " ------------------" << std::endl;
+            std::cout << " Blur        : b\n Edge        : e\n GrayScale   : g\n Reflect     : r\n Sepia       : s\n" << std::endl;
+            std::cout << " To QUIT press    : [q]" << std::endl;
+            std::cout << "Enter option :";
+            std::cin  >> instr;
+
+            // Ensure only one filter
+            if (instr.length() != 1) {
+                std::cout << "Only one option allowed.\nTry again..." << std::endl;
+                continue;
+            }
+
+            filter = instr.at(0);
+            
+            // check validates option
+            if (filtersOptions.find(filter) != std::string::npos) {
+                break;
+            }
+            else if (filter == 'q' || filter == 'Q') {
+                throw std::runtime_error {"Process terminated..."};
+            }
+            else {
+                std::cout << "Invalid filter option.\nTry again..." << std::endl;
+            }
         }
 
         // Read inFile's BITMAPFILEHEADER
@@ -91,22 +115,31 @@ int main(int argc, char **argv) {
         switch (filter) {
             // Blur
             case 'b':
+                std::cout << "Applied Blur filter successfully..." << std::endl;
                 blur(height, width, image);
                 break;
+
             // Edges
             case 'e':
+                std::cout << "Applied Edge Filter successfully..." << std::endl;
                 edges(height, width, image);
                 break;
+
             // Grayscale
             case 'g':
+                std::cout << "Applied Grayscale filter successfully..." << std::endl;
                 grayscale(height, width, image);
                 break;
+
             // Reflect
             case 'r':
+                std::cout << "Applied Reflect filter successfully..." << std::endl;
                 reflect(height, width, image);
                 break;
+
             // Sepia
             case 's':
+                std::cout << "Applied Sepia filter successfully..." << std::endl;
                 sepia(height, width, image);
                 break;
         }
