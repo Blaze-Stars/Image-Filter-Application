@@ -14,3 +14,6 @@ void edges(const int &, const int &, RGBTRIPLE **);
 
 // Sepia image
 void sepia(const int &, const int &, RGBTRIPLE **);
+
+// To check the file Format
+bool checkFile(char *);

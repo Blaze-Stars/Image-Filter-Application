@@ -13,6 +13,16 @@ int main(int argc, char **argv) {
             throw std::runtime_error {"Usage: filter infile outfile"};
         }
 
+        // checks the input file format
+        if (!checkFile(argv[1])) {
+             throw std::runtime_error {"Input File format not supported !"};
+        }
+
+        // checks the output file format
+        if (!checkFile(argv[2])) {
+            throw std::runtime_error {"Output File format not supported !"};
+        }
+
         // Open input file 
         FILE *inFile {fopen(argv[1], "r")};
 
@@ -20,15 +30,15 @@ int main(int argc, char **argv) {
         if (inFile == nullptr) {
             throw std::runtime_error {"Could not read : " + static_cast<std::string>(argv[1])};
         }
-
+        
         // Open output file
         FILE *outFile {fopen(argv[2], "w")};
-
+        
         // check writability
         if (outFile == nullptr) {
             throw std::runtime_error {"Could not create : " + static_cast<std::string>(argv[2])};
         }
-
+        
         // Define allowable filters
         std::string filtersOptions {"bBeEgGrRsS"};
         // To read input option(s) from terminal

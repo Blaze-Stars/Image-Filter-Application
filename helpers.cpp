@@ -2,8 +2,10 @@
     Defination of the filters used in this Application.
     Prototype can be found in `helpers.h`
 */
+#include <iostream>
 #include <cmath>
 #include <cstdlib>
+#include <string>
 #include "helpers.h"
 
 // Definition for grayscale filter
@@ -193,4 +195,24 @@ void sepia(const int &height, const int &width, RGBTRIPLE **image) {
             image[i][j].rgbtBlue  = sepiaBlue > 255 ? 255 : round(sepiaBlue);
         }
     }
+}
+
+// This Function checks file format
+bool checkFile(char * file) {
+    
+    std::string storeFormat {};
+
+    for (int i{0}; file[i] != '\0'; i++)
+    {
+        if (file[i] == '.') {
+            for (int j{i}; file[j] != '\0'; j++)
+                storeFormat += file[j];
+            break;
+        }            
+    }
+
+    if (storeFormat == ".bmp")
+        return true;
+    
+    return false;
 }
