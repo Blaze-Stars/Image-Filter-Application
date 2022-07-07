@@ -15,12 +15,12 @@ int main(int argc, char **argv) {
 
         // checks the input file format
         if (!checkFile(argv[1])) {
-             throw std::runtime_error {"Input File format not supported !"};
+             throw std::runtime_error {static_cast<std::string>(argv[1]) + ": unsupported File Format!"};
         }
 
         // checks the output file format
         if (!checkFile(argv[2])) {
-            throw std::runtime_error {"Output File format not supported !"};
+            throw std::runtime_error {static_cast<std::string>(argv[2]) + ": unsupported File Format!"};
         }
 
         // Open input file 
@@ -46,6 +46,22 @@ int main(int argc, char **argv) {
         
         // Get filter option
         char filter {'\0'};
+
+        // Read inFile's BITMAPFILEHEADER
+        BITMAPFILEHEADER bf;
+        fread(&bf, sizeof(BITMAPFILEHEADER), 1, inFile);
+
+        // Read inFile's BITMAPINFOHEADER
+        BITMAPINFOHEADER bi;
+        fread(&bi, sizeof(BITMAPINFOHEADER), 1, inFile);
+
+        // Ensure infile is (likely) a 24-bit uncompressed BMP 4.0
+        if (bf.bfType != 0x4d42 || bf.bfOffBits != 54 || bi.biSize != 40 || bi.biBitCount != 24 || bi.biCompression != 0) {
+            fclose(outFile);
+            fclose(inFile);
+            
+            throw std::runtime_error {"Unsupported file format."};
+        }
 
         while(true) {
             // Filter menu
@@ -74,22 +90,6 @@ int main(int argc, char **argv) {
             else {
                 std::cout << "Invalid filter option.\nTry again..." << std::endl;
             }
-        }
-
-        // Read inFile's BITMAPFILEHEADER
-        BITMAPFILEHEADER bf;
-        fread(&bf, sizeof(BITMAPFILEHEADER), 1, inFile);
-
-        // Read inFile's BITMAPINFOHEADER
-        BITMAPINFOHEADER bi;
-        fread(&bi, sizeof(BITMAPINFOHEADER), 1, inFile);
-
-        // Ensure infile is (likely) a 24-bit uncompressed BMP 4.0
-        if (bf.bfType != 0x4d42 || bf.bfOffBits != 54 || bi.biSize != 40 || bi.biBitCount != 24 || bi.biCompression != 0) {
-            fclose(outFile);
-            fclose(inFile);
-            
-            throw std::runtime_error {"Unsupported file format."};
         }
 
         int height {abs(bi.biHeight)};
