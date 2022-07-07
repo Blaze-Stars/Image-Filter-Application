@@ -2,7 +2,6 @@
     Defination of the filters used in this Application.
     Prototype can be found in `helpers.h`
 */
-#include <iostream>
 #include <cmath>
 #include <cstdlib>
 #include <string>
