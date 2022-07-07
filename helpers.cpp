@@ -195,23 +195,3 @@ void sepia(const int &height, const int &width, RGBTRIPLE **image) {
         }
     }
 }
-
-// This Function checks file format
-bool checkFile(char * file) {
-    
-    std::string storeFormat {};
-
-    for (int i{0}; file[i] != '\0'; i++)
-    {
-        if (file[i] == '.') {
-            for (int j{i}; file[j] != '\0'; j++)
-                storeFormat += file[j];
-            break;
-        }            
-    }
-
-    if (storeFormat == ".bmp")
-        return true;
-    
-    return false;
-}
