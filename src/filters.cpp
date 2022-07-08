@@ -5,7 +5,7 @@
 #include <cmath>
 #include <cstdlib>
 #include <string>
-#include "helpers.h"
+#include "../include/filters.h"
 
 // Definition for grayscale filter
 void grayscale(const int &height, const int &width, RGBTRIPLE **image) {
