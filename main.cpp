@@ -1,7 +1,7 @@
-#include <getopt.h>
 #include <iostream>
 #include <string>
 #include <cstdlib>
+#include <cctype>
 
 #include "include/filters.h"
 #include "include/helpers.h"
@@ -19,11 +19,6 @@ int main(int argc, char **argv) {
              throw std::runtime_error {static_cast<std::string>(argv[1]) + ": unsupported File Format!"};
         }
 
-        // checks the output file format
-        if (!checkFile(argv[2])) {
-            throw std::runtime_error {static_cast<std::string>(argv[2]) + ": unsupported File Format!"};
-        }
-
         // Open input file 
         FILE *inFile {fopen(argv[1], "r")};
 
@@ -31,22 +26,6 @@ int main(int argc, char **argv) {
         if (inFile == nullptr) {
             throw std::runtime_error {"Could not read : " + static_cast<std::string>(argv[1])};
         }
-        
-        // Open output file
-        FILE *outFile {fopen(argv[2], "w")};
-        
-        // check writability
-        if (outFile == nullptr) {
-            throw std::runtime_error {"Could not create : " + static_cast<std::string>(argv[2])};
-        }
-        
-        // Define allowable filters
-        std::string filtersOptions {"bBeEgGrRsS"};
-        // To read input option(s) from terminal
-        std::string instr;
-        
-        // Get filter option
-        char filter {'\0'};
 
         // Read inFile's BITMAPFILEHEADER
         BITMAPFILEHEADER bf;
@@ -58,11 +37,32 @@ int main(int argc, char **argv) {
 
         // Ensure infile is (likely) a 24-bit uncompressed BMP 4.0
         if (bf.bfType != 0x4d42 || bf.bfOffBits != 54 || bi.biSize != 40 || bi.biBitCount != 24 || bi.biCompression != 0) {
-            fclose(outFile);
             fclose(inFile);
             
-            throw std::runtime_error {"Unsupported file format."};
+            throw std::runtime_error {static_cast<std::string>(argv[1]) + "Unsupported file format."};
         }
+
+        // checks the output file format
+        if (!checkFile(argv[2])) {
+            throw std::runtime_error {static_cast<std::string>(argv[2]) + ": unsupported File Format!"};
+        }
+
+        // Open output file
+        FILE *outFile {fopen(argv[2], "w")};
+        
+        // check writability
+        if (outFile == nullptr) {
+            throw std::runtime_error {"Could not create : " + static_cast<std::string>(argv[2])};
+        }
+
+        // Get filter option
+        char filter {'\0'};
+
+        // Define allowable filters
+        std::string filtersOptions {"bBeEgGrRsS"};
+
+        // To read input option(s) from terminal
+        std::string instr;
 
         while(true) {
             // Filter menu
@@ -80,6 +80,7 @@ int main(int argc, char **argv) {
             }
 
             filter = instr.at(0);
+            filter = tolower(filter);
             
             // check validates option
             if (filtersOptions.find(filter) != std::string::npos) {
