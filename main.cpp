@@ -1,9 +1,9 @@
-#include <getopt.h>
-// #include <limits>
 #include <iostream>
 #include <string>
-#include <cstdlib>
-#include "helpers.h"
+#include <cctype>
+
+#include "include/filters.h"
+#include "include/helpers.h"
 
 // main file
 int main(int argc, char **argv) {
@@ -11,6 +11,11 @@ int main(int argc, char **argv) {
         // Ensure proper usage
         if (argc != 3) {
             throw std::runtime_error {"Usage: filter infile outfile"};
+        }
+
+        // checks the input file format
+        if (!checkFile(argv[1])) {
+             throw std::runtime_error {static_cast<std::string>(argv[1]) + ": unsupported File Format!"};
         }
 
         // Open input file 
@@ -21,21 +26,42 @@ int main(int argc, char **argv) {
             throw std::runtime_error {"Could not read : " + static_cast<std::string>(argv[1])};
         }
 
+        // Read inFile's BITMAPFILEHEADER
+        BITMAPFILEHEADER bf;
+        fread(&bf, sizeof(BITMAPFILEHEADER), 1, inFile);
+
+        // Read inFile's BITMAPINFOHEADER
+        BITMAPINFOHEADER bi;
+        fread(&bi, sizeof(BITMAPINFOHEADER), 1, inFile);
+
+        // Ensure infile is (likely) a 24-bit uncompressed BMP 4.0
+        if (bf.bfType != 0x4d42 || bf.bfOffBits != 54 || bi.biSize != 40 || bi.biBitCount != 24 || bi.biCompression != 0) {
+            fclose(inFile);
+            
+            throw std::runtime_error {static_cast<std::string>(argv[1]) + "Unsupported file format."};
+        }
+
+        // checks the output file format
+        if (!checkFile(argv[2])) {
+            throw std::runtime_error {static_cast<std::string>(argv[2]) + ": unsupported File Format!"};
+        }
+
         // Open output file
         FILE *outFile {fopen(argv[2], "w")};
-
+        
         // check writability
         if (outFile == nullptr) {
             throw std::runtime_error {"Could not create : " + static_cast<std::string>(argv[2])};
         }
 
-        // Define allowable filters
-        std::string filtersOptions {"bBeEgGrRsS"};
-        // To read input option(s) from terminal
-        std::string instr;
-        
         // Get filter option
         char filter {'\0'};
+
+        // Define allowable filters
+        std::string filtersOptions {"bBeEgGrRsS"};
+
+        // To read input option(s) from terminal
+        std::string instr;
 
         while(true) {
             // Filter menu
@@ -53,6 +79,7 @@ int main(int argc, char **argv) {
             }
 
             filter = instr.at(0);
+            filter = tolower(filter);
             
             // check validates option
             if (filtersOptions.find(filter) != std::string::npos) {
@@ -64,22 +91,6 @@ int main(int argc, char **argv) {
             else {
                 std::cout << "Invalid filter option.\nTry again..." << std::endl;
             }
-        }
-
-        // Read inFile's BITMAPFILEHEADER
-        BITMAPFILEHEADER bf;
-        fread(&bf, sizeof(BITMAPFILEHEADER), 1, inFile);
-
-        // Read inFile's BITMAPINFOHEADER
-        BITMAPINFOHEADER bi;
-        fread(&bi, sizeof(BITMAPINFOHEADER), 1, inFile);
-
-        // Ensure infile is (likely) a 24-bit uncompressed BMP 4.0
-        if (bf.bfType != 0x4d42 || bf.bfOffBits != 54 || bi.biSize != 40 || bi.biBitCount != 24 || bi.biCompression != 0) {
-            fclose(outFile);
-            fclose(inFile);
-            
-            throw std::runtime_error {"Unsupported file format."};
         }
 
         int height {abs(bi.biHeight)};
