@@ -58,7 +58,7 @@ int main(int argc, char **argv) {
         char filter {'\0'};
 
         // Define allowable filters
-        std::string filtersOptions {"bBeEgGrRsS"};
+        std::string filtersOptions {"begrs"};
 
         // To read input option(s) from terminal
         std::string instr;
@@ -85,7 +85,7 @@ int main(int argc, char **argv) {
             if (filtersOptions.find(filter) != std::string::npos) {
                 break;
             }
-            else if (filter == 'q' || filter == 'Q') {
+            else if (filter == 'q') {
                 throw std::runtime_error {"Process terminated..."};
             }
             else {
