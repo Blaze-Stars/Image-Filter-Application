@@ -13,9 +13,14 @@ int main(int argc, char **argv) {
             throw std::invalid_argument {"Usage: ./filter infile outfile"};
         }
 
+        // checks same input output file
+        if (static_cast<std::string>(argv[1]) == static_cast<std::string>(argv[2])) {
+            throw std::invalid_argument {static_cast<std::string>(argv[1]) + ": input file can't same as output file"};
+        }
+
         // checks the input file format
         if (!checkFile(argv[1])) {
-             throw std::runtime_error {static_cast<std::string>(argv[1]) + ": unsupported File Format!"};
+            throw std::invalid_argument {static_cast<std::string>(argv[1]) + ": unsupported File Format!"};
         }
 
         // Open input file 
@@ -23,7 +28,7 @@ int main(int argc, char **argv) {
 
         // check readability
         if (inFile == nullptr) {
-            throw std::runtime_error {"Could not read : " + static_cast<std::string>(argv[1])};
+            throw std::invalid_argument {"Could not read : " + static_cast<std::string>(argv[1])};
         }
 
         // Read inFile's BITMAPFILEHEADER
@@ -37,13 +42,15 @@ int main(int argc, char **argv) {
         // Ensure infile is (likely) a 24-bit uncompressed BMP 4.0
         if (bf.bfType != 0x4d42 || bf.bfOffBits != 54 || bi.biSize != 40 || bi.biBitCount != 24 || bi.biCompression != 0) {
             fclose(inFile);
-            
+
             throw std::runtime_error {static_cast<std::string>(argv[1]) + "Unsupported file format."};
         }
 
         // checks the output file format
         if (!checkFile(argv[2])) {
-            throw std::runtime_error {static_cast<std::string>(argv[2]) + ": unsupported File Format!"};
+            fclose(inFile);
+
+            throw std::invalid_argument {static_cast<std::string>(argv[2]) + ": unsupported File Format!"};
         }
 
         // Open output file
@@ -51,6 +58,8 @@ int main(int argc, char **argv) {
         
         // check writability
         if (outFile == nullptr) {
+            fclose(inFile);
+
             throw std::runtime_error {"Could not create : " + static_cast<std::string>(argv[2])};
         }
 
@@ -86,7 +95,11 @@ int main(int argc, char **argv) {
                 break;
             }
             else if (filter == 'q') {
-                throw std::runtime_error {"Process terminated..."};
+                std::cout << "Process terminated..." << std::endl;
+                fclose(inFile);
+                fclose(outFile);
+
+                return 1;
             }
             else {
                 std::cout << "Invalid filter option.\nTry again..." << std::endl;
@@ -187,7 +200,7 @@ int main(int argc, char **argv) {
     }
     catch (std::exception const &ex) {
         std::cerr << ex.what() << std::endl;
-        return 1;
+        return 2;
     }
     
     return 0;
