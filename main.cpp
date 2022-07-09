@@ -10,7 +10,7 @@ int main(int argc, char **argv) {
     try {
         // Ensure proper usage
         if (argc != 3) {
-            throw std::runtime_error {"Usage: filter infile outfile"};
+            throw std::invalid_argument {"Usage: ./filter infile outfile"};
         }
 
         // checks the input file format
