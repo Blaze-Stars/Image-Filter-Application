@@ -3,7 +3,6 @@
     Prototype can be found in `helpers.h`
 */
 #include <cmath>
-#include <cstdlib>
 #include <string>
 #include "../include/filters.h"
 
