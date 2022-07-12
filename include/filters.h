@@ -1,3 +1,5 @@
+#pragma once
+
 #include "bmp.h"
 
 // Convert Image to grayscale
