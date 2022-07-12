@@ -10,4 +10,4 @@ bool checkFile(char *);
 char showFilterMenu();
 
 // Applies filter according to the user selected filter option
-void applyFilterMenu(char &filter, int &height, int &width, RGBTRIPLE **image);
+void applyFilter(const char &filter, const int &height, const int &width, RGBTRIPLE **image);

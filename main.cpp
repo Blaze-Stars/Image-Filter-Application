@@ -97,7 +97,7 @@ int main(int argc, char **argv) {
         
         // Apply filter only if the user not opted to quit 
         if (filter != 'q') {
-            applyFilterMenu(filter, height, width, image);
+            applyFilter(filter, height, width, image);
         } else {
             std::cout << "Process terminated..." << std::endl;
             fclose(inFile);
