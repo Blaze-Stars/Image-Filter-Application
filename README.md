@@ -26,22 +26,18 @@ make
 Boom! You have successfully build `Image-Filter-Application`
 ## Running
 
-+ Currently `Image-Filter-Application` supports `5 filters`, these filters can be used using the following flags below.<br>
++ Currently `Image-Filter-Application` supports `5 filters`, these filters can be used using the following options below.<br>
 + We have several example Images to test these filters stored in [imgDB](https://github.com/Blaze-Stars/Image-Filter-Application/tree/main/img-db)
 
 | Filters | Flag |
 | ------- | ----- |
-| GrayScale | -g |
-| Blur | -b |
-| Reflect | -r |
-| Edge | -e |
-| Sepia | -s |
+| GrayScale | g |
+| Blur | b |
+| Reflect | r |
+| Edge | e |
+| Sepia | s |
 
 To use any of the filters :
 ```shell
-./filter -g img-db/<pickAnyImage> <YourOutputFileName>.bmp
-```
-### NOTE
-```
-The above example shows output for the grayscale filter, you can change the flags and image to apply any other filter 
+./filter img-db/<pickAnyImage> <YourOutputFileName>.bmp
 ```
