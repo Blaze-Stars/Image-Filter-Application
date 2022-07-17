@@ -10,7 +10,6 @@
 
 This project is associated with the Department of Integrated MCA, Utkal University, Bhubaneshwar, Odisha.<br>
 This is a command line application which can be used in terminal.<br>
-Here is a presentation of the project: https://bit.ly/imageFilterAppPresentation
 
 ## Pre-requisite
 
