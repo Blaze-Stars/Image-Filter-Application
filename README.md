@@ -9,7 +9,7 @@
 ## Project
 
 This project is associated with the Department of Integrated MCA, Utkal University, Bhubaneshwar, Odisha.<br>
-This is a command line application which can be used in terminal.<br>
+This is a command line application.<br>
 
 ## Pre-requisite
 
@@ -40,3 +40,4 @@ To use any of the filters :
 ```shell
 ./filter img-db/<pickAnyImage> <YourOutputFileName>.bmp
 ```
+## [Contribution Guide](https://github.com/Blaze-Stars/Image-Filter-Application/blob/main/CONTRIBUTING.md)
