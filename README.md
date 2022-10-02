@@ -5,6 +5,7 @@
 1) [An overview](#project)
 2) [Building Image-Filter-Application](#building)
 3) [Running Image-Filter-Application](#running)
+4) [Contribution Guide](https://github.com/Blaze-Stars/Image-Filter-Application/blob/main/CONTRIBUTING.md)
 
 ## Project
 
@@ -40,7 +41,5 @@ To use any of the filters :
 ```shell
 ./filter
 ```
-## [Contribution Guide](https://github.com/Blaze-Stars/Image-Filter-Application/blob/main/CONTRIBUTING.md)
-
 ## License
 <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
