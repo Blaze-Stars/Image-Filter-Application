@@ -9,7 +9,7 @@
 
 ## Project
 
-This project is associated with the Department of Integrated MCA, Utkal University, Bhubaneshwar, Odisha.<br>
+This project is associated with [Department of Integrated MCA, Utkal University](https://utkaluniversity.ac.in/departments/5-years-integrated-master-in-computer-application/) .<br>
 This is a command line application.<br>
 
 ## Pre-requisite
