@@ -23,7 +23,7 @@ To build `Image-Filter-App`, go to your project directory and open your `Termina
 make
 ```
 Boom! You have successfully build `Image-Filter-Application`
-## Running
+## Usage
 
 + Currently `Image-Filter-Application` supports `5 filters`, these filters can be used using the following options below.<br>
 + We have several example Images to test these filters stored in [imgDB](https://github.com/Blaze-Stars/Image-Filter-Application/tree/main/img-db)
@@ -38,7 +38,7 @@ Boom! You have successfully build `Image-Filter-Application`
 
 To use any of the filters :
 ```shell
-./filter img-db/<pickAnyImage> <YourOutputFileName>.bmp
+./filter
 ```
 ## [Contribution Guide](https://github.com/Blaze-Stars/Image-Filter-Application/blob/main/CONTRIBUTING.md)
 
