@@ -9,19 +9,16 @@
 
 ## Project
 
-This project is associated with [Department of Integrated MCA, Utkal University](https://utkaluniversity.ac.in/departments/5-years-integrated-master-in-computer-application/) .<br>
+This project is associated with [Department of Integrated MCA, Utkal University](https://utkaluniversity.ac.in/departments/5-years-integrated-master-in-computer-application/).<br>
 This is a command line application.<br>
 
 ## Pre-requisite
 
-To build `Image-Filter-App` make sure To install `make` in your System and `g++` compiler.<br>
-`make` installation in windows -> [link](https://www.technewstoday.com/install-and-use-make-in-windows/)<br>
-`make` installation in Ubuntu -> [link](https://askubuntu.com/questions/161104/how-do-i-install-make) 
+
 ## Building
 
 To build `Image-Filter-App`, go to your project directory and open your `Terminal` and type.
 ```shell
-make
 ```
 Boom! You have successfully build `Image-Filter-Application`
 ## Usage
