@@ -2,7 +2,7 @@
 ### `An Application to apply different Filters to different BMPs Images`
 ## Table of Contents
 
-1) [An overview](#project)
+1) [Project Image-Filter-Application overview](#project)
 2) [Building Image-Filter-Application](#building)
 3) [Running Image-Filter-Application](#running)
 4) [Contribution Guide](https://github.com/Blaze-Stars/Image-Filter-Application/blob/main/CONTRIBUTING.md)
@@ -41,5 +41,23 @@ To use any of the filters :
 ```shell
 ./filter infile outfile
 ```
+#### Illustration
+```
+./filter img-db/yard.bmp out.bmp
+
+ FILTER    : OPTION
+ ------------------
+ Blur        : b
+ Edge        : e
+ GrayScale   : g
+ Reflect     : r
+ Sepia       : s
+
+ To QUIT press    : [q]
+Enter option :b
+Applied Blur filter successfully...
+```
+You can check out.bmp for Blured Result.
+
 ## License
 <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
