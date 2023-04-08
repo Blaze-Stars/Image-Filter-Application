@@ -19,6 +19,7 @@ This is a command line application.<br>
 
 To build `Image-Filter-App`, go to your project directory and open your `Terminal` and type.
 ```shell
+make
 ```
 Boom! You have successfully build `Image-Filter-Application`
 ## Usage
