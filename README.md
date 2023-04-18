@@ -21,7 +21,18 @@ Image Filter application is only available in command line application. To know 
 
 ## Building
 
-To build `Image-Filter-App`, go to your project directory and open your `Terminal` and type.
+To build `Image-Filter-App`, go to your project directory.
+
+1. Create a build dir
+```shell
+mkdir build
+```
+2. Now its time for `cmake` to do configure and generate build files.
+```shell
+cmake -B build/
+```
+
+3. Now its time for `make` to generate executable file. Head inside `build` dir and type.
 ```shell
 make
 ```
