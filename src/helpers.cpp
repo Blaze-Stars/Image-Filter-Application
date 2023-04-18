@@ -7,8 +7,25 @@
 // Extracts file extension and checks if file is bmp
 bool checkFile(char *file) {
     std::string storeFormat {};
+    int fileNameSize {0};
 
     for (int i {0}; file[i] != '\0'; ++i) {
+        ++fileNameSize;
+    }
+
+    // e.g File Name: a.bmp (5 chars)
+    if (fileNameSize <= 4) {
+        return false;
+    }
+
+    for (int i {0}; i != fileNameSize; ++i) {
+        // Only checks .. e.g ../img-db/tower.bmp
+        if (file[i] == '.' && file[i + 1] == '.') {
+            // Jump to after . e.g ../ so now it will be in /
+            ++i;
+            continue;
+        }
+
         if (file[i] == '.') {
             for (int j {i + 1}; file[j] != '\0'; ++j) {
                 storeFormat += file[j];
