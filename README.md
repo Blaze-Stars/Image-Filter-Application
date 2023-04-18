@@ -17,6 +17,7 @@ Image Filter application is only available in command line application. To know 
 ## Pre-requisite
 
 1. CMake
+2. Make
 2. gcc
 
 ## Building
